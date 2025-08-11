@@ -1,3 +1,4 @@
+import NavBar from "@/components/Navbar";
 import "./globals.css";
 import { ReactLenis } from 'lenis/react'
 
@@ -15,15 +16,15 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en" suppressHydrationWarning
-      
     >
       <head>
-        <link rel="icon" href="/images/favicon.ico" />
+       
       </head>
       <body
         className={` antialiased`}
       >
         <ReactLenis root>
+          <NavBar />
           {children}
         </ReactLenis>
       </body>
