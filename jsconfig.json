@@ -1,5 +1,7 @@
+// filepath: e:\Git Hub\WEBTEST\NextJS\portfolio\jsconfig.json
 {
   "compilerOptions": {
+    "allowJs": true,
     "paths": {
       "@/*": ["./src/*"]
     }
