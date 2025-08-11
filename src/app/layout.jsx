@@ -1,6 +1,7 @@
 import NavBar from "@/components/Navbar";
 import "./globals.css";
 import { ReactLenis } from 'lenis/react'
+import PreLoader from "@/components/PreLoader";
 
 
 export const metadata = {
@@ -24,6 +25,7 @@ export default function RootLayout({ children }) {
         className={` antialiased`}
       >
         <ReactLenis root>
+          <PreLoader />
           <NavBar />
           {children}
         </ReactLenis>

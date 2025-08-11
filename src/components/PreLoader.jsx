@@ -1,0 +1,230 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
+"use client";
+import { useEffect, useMemo, useRef, useState } from "react";
+import gsap from "gsap";
+
+export default function PreLoader({
+  assets = ["/video/Aurora.mp4","/images/aboutbg2.jpg","/images/propic.jpg"],
+  minDurationMs = 1500,
+  onDone,
+  ctaLabel = "START",
+}) {
+  const overlayRef = useRef(null);
+  const progressWrapRef = useRef(null);
+  const countRef = useRef(null);
+  const barRef = useRef(null);
+  const btnRef = useRef(null);
+
+  const progressRef = useRef(0);
+  const displayRef = useRef({ n: 0 });
+  const startedAt = useRef(performance.now());
+  const [readyForCTA, setReadyForCTA] = useState(false);
+
+  // store previous overflow values so we can restore exactly
+  const prevHtmlOverflow = useRef("");
+  const prevBodyOverflow = useRef("");
+
+  const urls = useMemo(() => [...new Set(assets.filter(Boolean))], [assets]);
+
+  // helpers to lock/unlock scroll (important on mobile)
+  const lockScroll = () => {
+    const html = document.documentElement;
+    const body = document.body;
+    prevHtmlOverflow.current = html.style.overflow;
+    prevBodyOverflow.current = body.style.overflow;
+    html.style.overflow = "hidden";
+    body.style.overflow = "hidden";
+    // improves iOS feel if you ever allow scroll under an overlay
+    body.style.webkitOverflowScrolling = "auto";
+  };
+
+  const unlockScroll = () => {
+    const html = document.documentElement;
+    const body = document.body;
+    html.style.overflow = prevHtmlOverflow.current || "";
+    body.style.overflow = prevBodyOverflow.current || "";
+    body.style.webkitOverflowScrolling = "touch";
+  };
+
+  // lock on mount
+  useEffect(() => {
+    lockScroll();
+    return () => unlockScroll(); // backup on unmount
+  }, []);
+
+  useEffect(() => {
+    const overlay = overlayRef.current;
+    const countEl = countRef.current;
+    const barEl = barRef.current;
+    const progressWrap = progressWrapRef.current;
+    if (!overlay || !countEl || !progressWrap) return;
+
+    gsap.set(overlay, { opacity: 1 });
+    gsap.set(countEl, { autoAlpha: 1 });
+    gsap.set(btnRef.current, { autoAlpha: 0, y: 8 });
+
+    const setDisplay = (to) => {
+      progressRef.current = Math.max(progressRef.current, to);
+      gsap.to(displayRef.current, {
+        n: progressRef.current,
+        duration: 1.2,
+        ease: "power2.out",
+        onUpdate: () => {
+          const v = Math.round(displayRef.current.n);
+          countEl.textContent = v;
+          if (barEl) barEl.style.width = `${v}%`;
+        },
+      });
+    };
+
+    const loadWithType = (url, signal) =>
+      new Promise((resolve) => {
+        const finish = (ok) => resolve(ok);
+        const ext = (url.split("?")[0].split("#")[0].split(".").pop() || "").toLowerCase();
+
+        if (["png","jpg","jpeg","webp","gif","svg","avif"].includes(ext)) {
+          const img = new Image();
+          img.onload = () => finish(true);
+          img.onerror = () => finish(false);
+          img.src = url;
+          return;
+        }
+
+        if (["mp4","webm","ogg"].includes(ext)) {
+          const video = document.createElement("video");
+          video.preload = "auto";
+          const cleanup = () => { video.onloadeddata = null; video.onerror = null; };
+          video.onloadeddata = () => { cleanup(); finish(true); };
+          video.onerror = () => { cleanup(); finish(false); };
+          fetch(url, { signal }).finally(() => { video.src = url; });
+          return;
+        }
+
+        fetch(url, { signal }).then(() => finish(true)).catch(() => finish(false));
+      });
+
+    let loaded = 0;
+    const total = urls.length;
+    const controller = new AbortController();
+
+    const bump = () => {
+      if (total === 0) return;
+      loaded += 1;
+      const pct = Math.floor((loaded / total) * 100);
+      setDisplay(Math.min(99, pct));
+      maybeFinish();
+    };
+
+    let windowLoaded = document.readyState === "complete";
+    const onWindowLoad = () => { windowLoaded = true; maybeFinish(); };
+    window.addEventListener("load", onWindowLoad);
+
+    let driftRemover = null;
+    if (total === 0) {
+      const drift = () => {
+        if (displayRef.current.n < 90) setDisplay(displayRef.current.n + 0.15);
+      };
+      gsap.ticker.add(drift);
+      driftRemover = () => gsap.ticker.remove(drift);
+    }
+
+    const started = performance.now();
+
+    const finishToCTA = () => {
+      const elapsed = performance.now() - started;
+      const wait = Math.max(0, minDurationMs - elapsed);
+
+      gsap.delayedCall(wait / 1000, () => {
+        gsap.to(displayRef.current, {
+          n: 100,
+          duration: 0.35,
+          ease: "power3.out",
+          onUpdate: () => {
+            const v = Math.round(displayRef.current.n);
+            countEl.textContent = v;
+            if (barEl) barEl.style.width = `${v}%`;
+          },
+          onComplete: () => {
+            gsap.set(progressWrap, { display: "none" });
+            gsap.to(btnRef.current, { autoAlpha: 1, y: 0, duration: 0.4, ease: "power3.out" });
+            setReadyForCTA(true);
+          },
+        });
+      });
+    };
+
+    const allAssetsLoaded = () => total === 0 || loaded >= total;
+    const maybeFinish = () => {
+      if (allAssetsLoaded() || windowLoaded) finishToCTA();
+    };
+
+    if (total > 0) {
+      urls.forEach((url) => {
+        const timeout = setTimeout(() => bump(), 15000);
+        loadWithType(url, controller.signal).finally(() => {
+          clearTimeout(timeout);
+          bump();
+        });
+      });
+    } else {
+      maybeFinish();
+    }
+
+    return () => {
+      window.removeEventListener("load", onWindowLoad);
+      controller.abort();
+      if (driftRemover) driftRemover();
+      gsap.killTweensOf(displayRef.current);
+    };
+  }, [urls, minDurationMs]);
+
+  // CTA click -> fade overlay, then unlock scroll + unmount callback
+  const handleEnter = () => {
+    gsap.to(overlayRef.current, {
+      opacity: 0,
+      duration: 0.6,
+      ease: "power2.out",
+      onStart: () => {
+        // allow touches to pass through immediately during fade on mobile
+        overlayRef.current.style.pointerEvents = "none";
+      },
+      onComplete: () => {
+        overlayRef.current.style.display = "none";
+        unlockScroll();          // <-- IMPORTANT for mobile scrolling
+        onDone?.();
+      },
+    });
+  };
+
+  return (
+    <div
+      ref={overlayRef}
+      className="fixed inset-0 z-[9999] bg-black text-lavender-400 flex items-center justify-center select-none font-outfit"
+      aria-label="Loading"
+    >
+      <div className="flex flex-col items-center gap-4">
+        <div ref={progressWrapRef} className="flex flex-col items-center gap-4">
+          <div className="text-5xl md:text-7xl font-extrabold tabular-nums tracking-widest">
+            <span ref={countRef}>0</span>
+            <span className="opacity-80">%</span>
+          </div>
+          <div className="w-56 md:w-72 h-[3px] bg-white/10 overflow-hidden rounded">
+            <div ref={barRef} className="h-full bg-lavender-400" style={{ width: "0%" }} />
+          </div>
+        </div>
+
+        <button
+          ref={btnRef}
+          onClick={handleEnter}
+          disabled={!readyForCTA}
+          className={`px-12 py-2 rounded-3xl border opacity-0 border-lavender-400 bg-charcoal hover:bg-lavender-400 hover:text-charcoal transition text-outfit font-semibold tracking-widest duration-500 ${
+            readyForCTA ? "cursor-pointer" : "cursor-not-allowed"
+          }`}
+        >
+          {ctaLabel}
+        </button>
+      </div>
+    </div>
+  );
+}
