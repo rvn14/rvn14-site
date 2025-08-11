@@ -15,8 +15,8 @@ const eslintConfig = [
     files: ["**/*.js", "**/*.jsx"],
     languageOptions: {
       ecmaVersion: 2022,
-      sourceType: "module",
-      ecmaFeatures: { jsx: true },
+      sourceType: "module"
+      // REMOVE ecmaFeatures!
     },
   },
 ];
