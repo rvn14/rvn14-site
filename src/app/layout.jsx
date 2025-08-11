@@ -2,6 +2,7 @@ import NavBar from "@/components/Navbar";
 import "./globals.css";
 import { ReactLenis } from 'lenis/react'
 import PreLoader from "@/components/PreLoader";
+import Footer from "@/components/Footer";
 
 
 export const metadata = {
@@ -28,6 +29,7 @@ export default function RootLayout({ children }) {
           <PreLoader />
           <NavBar />
           {children}
+          <Footer />
         </ReactLenis>
       </body>
     </html>

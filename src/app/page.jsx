@@ -1,10 +1,16 @@
 "use client"
+import About from "@/components/About";
 import AnimatedTitle from "@/components/AnimatedTitle";
+import Contact from "@/components/Contact";
 import Experience from "@/components/Experience";
 import LoopText from "@/components/LoopText";
+import Projects from "@/components/Projects";
 import ShinyText from "@/components/ShinyText";
 import Waves from "@/components/Waves";
 import { Element } from "react-scroll";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import AnimatedIntro from "@/components/AnimatedIntro";
 
 
 const Home = () => {
@@ -79,22 +85,20 @@ const Home = () => {
           <div className="flex flex-col items-center inset-0 z-10 w-full rounded-2xl md:relative">
             <div className="flex flex-col items-center justify-center rounded-xl overflow-hidden z-10">
               <div className="absolute bottom-0 w-full h-2/3 bg-gradient-to-t from-black via-black to-transparent pointer-events-none z-10"></div>
-              <img src="images/aboutbg2.jpg" alt="" className="scale-102" />
+              <Image
+                  src="/images/aboutbg2.jpg"
+                  alt=""
+                  width={800}
+                  height={400}
+                  className="scale-102 w-full h-auto"
+                  priority
+                />
               <div className="absolute bottom-0 z-30 flex flex-col items-center justify-center w-full">
                 <AnimatedTitle
                   title="<b>DIGIT</b>AL <b>DES</b>IGNER<br />A<b>N</b>D CR<b>E</b>A<b>T</b>IVE D<b>E</b>V<b>E</b>L<b>OPER</b>"
                   containerClass="mt-2 text-lavender-100! font-light text-center text-3xl md:text-7xl"
                 />
-                <div className="flex flex-col items-center justify-center text-center mt-4">
-                  <p className="font-semibold text-lg">
-                    Hi! my name is <span className="text-lavender-400">Dasun Adithya</span>
-                  </p>
-                  <p className="text-gray-300 w-2/3">
-                    <span>
-                      I am a <span className="text-lavender-400 font-semibold">Computer Science</span> undergraduate with strong coding skills and a passion for designing websites, interfaces, and graphics.
-                    </span>
-                  </p>
-                </div>
+                <AnimatedIntro/>
               </div>
             </div>
           </div>
@@ -105,7 +109,7 @@ const Home = () => {
             {/* Card 1 */}
             <div className="bg-[#0B0C0E] p-4 sm:p-6 w-full max-w-xs h-auto rounded-2xl shadow-md flex flex-col items-center ">
               <div className="w-full aspect-[6/5] rounded-xl overflow-hidden mb-6">
-                <img src="images/gif1.gif" alt="" className="w-full h-full object-cover" />
+                <Image src="/images/gif1.gif" alt="" width={400} height={333} className="w-full h-full object-cover" />
               </div>
               <LoopText text="Creative" className="text-3xl tracking-widest font-semibold mt-2 text-center"/>
               <LoopText text="Designer" className="text-2xl tracking-widest font-semibold text-center" stagger={3}/>
@@ -113,7 +117,7 @@ const Home = () => {
             {/* Card 2 */}
             <div className="bg-[#0B0C0E] p-4 sm:p-6 w-full max-w-xs h-auto rounded-2xl shadow-md flex flex-col items-center ">
               <div className="w-full aspect-[6/5] rounded-xl overflow-hidden mb-6">
-                <img src="images/gif2.gif" alt="" className="w-full h-full object-cover" />
+                <Image src="/images/gif2.gif" alt="" width={400} height={333} className="w-full h-full object-cover" />
               </div>
               <LoopText text="Analytical" className="text-3xl tracking-widest font-semibold mt-2 text-center"/>
               <LoopText text="Thinker" className="text-2xl tracking-widest font-semibold text-center" stagger={3}/>
@@ -121,7 +125,7 @@ const Home = () => {
             {/* Card 3 */}
             <div className="bg-[#0B0C0E] p-4 sm:p-6 w-full max-w-xs h-auto rounded-2xl shadow-md flex flex-col items-center ">
               <div className="w-full aspect-[6/5] rounded-xl overflow-hidden mb-6">
-                <img src="images/gif3.gif" alt="" className="w-full h-full object-cover" />
+                <Image src="/images/gif3.gif" alt="" width={400} height={333} className="w-full h-full object-cover" />
               </div>
               <LoopText text="Fullstack" className="text-3xl tracking-widest font-semibold mt-2 text-center"/>
               <LoopText text="Developer" className="text-2xl tracking-widest font-semibold text-center" stagger={3}/>
@@ -138,8 +142,19 @@ const Home = () => {
           />
           <Experience />
         </div>
-
       </section>
+
+      <Element name="about">
+        <About />
+      </Element>
+
+      <Element name="projects">
+        <Projects />
+      </Element>
+
+      <Element name="contact">
+        <Contact />
+      </Element>
     </main>
   );
 };

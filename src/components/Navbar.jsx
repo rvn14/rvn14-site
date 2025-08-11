@@ -2,6 +2,8 @@
 import gsap from "gsap";
 import { useWindowScroll } from "react-use";
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-scroll";
+import Image from "next/image";
 
 
 const navItems = ["Home", "About", "Projects", "Contact"];
@@ -56,7 +58,14 @@ const NavBar = () => {
         <nav className="flex size-full items-center justify-between p-4">
           {/* Logo and Product button */}
           <div className="flex items-center gap-4 sm:ml-5">
-            <img src="/images/iconpro.png" alt="logo" className="w-10" />
+            <Image
+              src="/images/iconpro.png"
+              alt="logo"
+              width={40}
+              height={40}
+              className="w-10"
+              priority
+            />
             <div className="font-bruno text-blue-50 font-black text-xl pointer-events-none select-none">RVN14</div>
 
           </div>
@@ -65,13 +74,17 @@ const NavBar = () => {
           <div className="flex h-full items-center mr-5">
             <div className="hidden md:block">
               {navItems.map((item, index) => (
-                <a
+                <Link
                   key={index}
-                  href={`#${item.toLowerCase()}`}
-                  className="nav-hover-btn"
+                  to={item.toLowerCase()}
+                  smooth="easeInOutQuint"
+                  duration={1000}
+                  offset={-30}
+                  easing="easeInOutQuad"
+                  className="nav-hover-btn cursor-pointer"
                 >
                   {item}
-                </a>
+                </Link>
               ))}
             </div>
           </div>

@@ -23,7 +23,7 @@ const Footer = () => {
                 <FaXTwitter size={20} />
                 
               </a>
-              <a href="https://www.instagram.com/_rvn_d.a.s.u.n_/#" target="_blank" rel="noopener noreferrer" className="hover:text-lavender-400 transition-colors flex items-center">
+              <a href="https://www.instagram.com/_rvn_d.a.s.u.n_" target="_blank" rel="noopener noreferrer" className="hover:text-lavender-400 transition-colors flex items-center">
                 <FaInstagram size={20} />
                 
               </a>

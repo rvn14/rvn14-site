@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 
 const containerVariants = {
-  hidden: { opacity: 0, y: 40, filter: "blur(5px)" },
+  hidden: { opacity: 0, y: 40, filter: "blur(2px)" },
   visible: {
     opacity: 1,
     y: 0,

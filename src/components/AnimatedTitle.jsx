@@ -17,8 +17,9 @@ useLayoutEffect(() => {
     const titleAnimation = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
-        start: "10% bottom",
+        start: "center bottom",
         toggleActions: "play none none reverse",
+        
         
       },
     });
