@@ -3,6 +3,7 @@
 "use client";
 import { useEffect, useMemo, useRef, useState } from "react";
 import gsap from "gsap";
+import { scroller } from "react-scroll";
 
 export default function PreLoader({
   assets = ["/video/Aurora.mp4","/images/aboutbg2.jpg","/images/propic.jpg"],
@@ -181,6 +182,9 @@ export default function PreLoader({
 
   // CTA click -> fade overlay, then unlock scroll + unmount callback
   const handleEnter = () => {
+    scroller.scrollTo("home", {
+      duration: 0,
+    });
     gsap.to(overlayRef.current, {
       opacity: 0,
       duration: 0.6,
@@ -195,6 +199,8 @@ export default function PreLoader({
         onDone?.();
       },
     });
+
+    
   };
 
   return (

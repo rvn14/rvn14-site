@@ -1,9 +1,10 @@
-
+"use client"
 import AnimatedTitle from "@/components/AnimatedTitle";
 import Experience from "@/components/Experience";
 import LoopText from "@/components/LoopText";
 import ShinyText from "@/components/ShinyText";
 import Waves from "@/components/Waves";
+import { Element } from "react-scroll";
 
 
 const Home = () => {
@@ -13,7 +14,7 @@ const Home = () => {
   return (
     <main className="w-full min-h-dvh bg-black">
       {/* HERO SECTION */}
-      <section className="relative h-dvh flex flex-col items-center justify-center overflow-hidden">
+      <Element name="home" className="relative h-dvh flex flex-col items-center justify-center overflow-hidden">
         
         <video
           src="/video/video.mp4"
@@ -56,7 +57,7 @@ const Home = () => {
           </h1>
           
         </div>
-      </section>
+      </Element>
 
       {/* ABOUT/INFO SECTION */}
       <section  className="flex flex-col items-center text-lavender-100 relative px-2 lg:px-36 pb-6">
