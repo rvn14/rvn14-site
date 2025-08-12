@@ -8,7 +8,7 @@ const Contact = () => {
     <main className="w-full flex-center bg-black text-lavender-100/60 py-16 px-8 ">
       <div className="container w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div className="max-w-3xl">
-          <h1 className="text-4xl md:text-7xl font-bold leading-tight text-lavender-100 mb-2">
+          <h1 className="text-4xl md:text-6xl font-bold leading-tight text-lavender-100 mb-2">
             Stay connected<span className="align-super">®</span>
           </h1>
           <h2 className="text-2xl md:text-5xl font-medium text-lavender-100 mb-6">
