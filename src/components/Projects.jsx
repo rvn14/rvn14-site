@@ -162,8 +162,8 @@ const Projects = () => {
   return (
     
       <section className="relative w-full bg-black z-1 pb-8 pt-8">
-      <div className="container mx-auto px-3 md:px-10">
-        <div className="px-5 pb-16">
+      <div className="container mx-auto px-2 md:px-0">
+        <div className="px-8 pb-16">
           <motion.p
               initial={{ opacity: 0, y: 30, filter: "blur(5px)" }}
               whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}

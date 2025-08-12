@@ -2,10 +2,10 @@ import { FaGithub, FaLinkedin, FaXTwitter, FaInstagram } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-charcoal text-white ">
+    <footer className="w-full bg-gradient-to-t from-charcoal to-black text-lavender-100 ">
       <div className="w-full flex flex-col items-center">
-        <div className="w-full py-2 bg-lavender-400 rounded-t-2xl"></div>
-        <div className="container mx-auto px-4 py-8">
+        
+        <div className="container mx-auto px-2 md:px-0 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
               <p className="text-sm">&copy; {new Date().getFullYear()} rvn14. All rights reserved.</p>
