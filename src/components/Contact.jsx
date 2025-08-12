@@ -32,7 +32,7 @@ const Contact = () => {
         <div className="w-full flex justify-center lg:justify-end">
           <aside className="bg-charcoal text-white p-6 rounded-lg w-full max-w-lg font-mono">
             <div className="flex justify-between items-center mb-4">
-              <div className="flex space-x-2">
+              <div className="flex gap-2 space-x-2">
                 <div className="w-3 h-3 rounded-full bg-red-500" />
                 <div className="w-3 h-3 rounded-full bg-yellow-500" />
                 <div className="w-3 h-3 rounded-full bg-green-500" />
