@@ -97,7 +97,7 @@ const Experience = () => {
                 
               >{item.title}
               </div>
-              <div className='exp-description text-m font-poppins font-light '>{item.hidden}</div>
+              <div className='exp-description text-xs md:text-base font-poppins font-light '>{item.hidden}</div>
               </div>
             </div>
           ))}
