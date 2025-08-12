@@ -2,7 +2,7 @@ import { FaGithub, FaLinkedin, FaXTwitter, FaInstagram } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-gradient-to-t from-charcoal to-black text-lavender-100 ">
+    <footer className="w-full bg-gradient-to-t from-charcoal to-black text-lavender-100 md:px-30 p-2">
       <div className="w-full flex flex-col items-center">
         
         <div className="container mx-auto px-2 md:px-0 py-8">

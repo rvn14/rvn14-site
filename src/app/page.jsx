@@ -67,9 +67,8 @@ const Home = () => {
       </Element>
 
       {/* ABOUT/INFO SECTION */}
-      <section  className="flex flex-col items-center text-lavender-100 relative px-2  pb-6">
-        
-        
+      <section  className="flex flex-col items-center text-lavender-100 relative px-2 md:px-32 pb-6">
+
 
         {/* --- MAIN CARD --- */}
         <div className="w-full max-w-6xl  min-h-100 bg-[#0B0C0E] md:rounded-2xl z-10  md:shadow-[0px_-5px_40px_6px_rgba(204,182,247,0.25)] flex flex-col items-center px-2 pt-2 md:p-4 relative">
@@ -150,18 +149,19 @@ const Home = () => {
         </div>
       </section>
 
-      <Element name="about">
-        <About 
-        />
-      </Element>
+      <section className="md:px-30">
+        <Element name="about">
+          <About />
+        </Element>
 
-      <Element name="projects">
-        <Projects />
-      </Element>
+        <Element name="projects">
+          <Projects />
+        </Element>
 
-      <Element name="contact">
-        <Contact />
-      </Element>
+        <Element name="contact">
+          <Contact />
+        </Element>
+      </section>
     </main>
   );
 };
