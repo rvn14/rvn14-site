@@ -1,13 +1,15 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 "use client"
+import Image from "next/image";
 import { gsap } from "gsap";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { DiReact } from "react-icons/di";
+import { } from "react-icons/di";
 import { FaGithub } from "react-icons/fa6";
 import { TiLocationArrow } from "react-icons/ti";
 import ShinyText from "./ShinyText";
+import { motion } from "framer-motion";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -38,7 +40,7 @@ export const BentoTilt = ({ children, className = "" }) => {
   };
   
   return (
-    <div
+    <div 
       ref={itemRef}
       className={className}
       onMouseMove={handleMouseMove}
@@ -80,10 +82,13 @@ export const BentoCard = ({ src, title, description, isComingSoon, repoLink, sit
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <img 
-        className={`object-center object-cover z-0 w-full h-full transition-transform duration-500`} 
+      <Image 
+        className="object-center object-cover z-0 w-full h-full transition-transform duration-500" 
         src={src}
         alt={typeof title === 'string' ? title : 'Project thumbnail'}
+        width={800}
+        height={600}
+        priority={true}
       />
       <div className="absolute top-0 z-10 flex size-full flex-col justify-between p-5 bg-gradient-to-b from-black/0 to-black/0 text-lavender-100 transition-opacity duration-300">
         <div className="flex flex-col p-3 bg-black/20 backdrop-blur-xs rounded-lg border-hsla shadow-lg">
@@ -159,21 +164,32 @@ const Projects = () => {
       <section className="relative w-full bg-black z-1 pb-8 pt-8">
       <div className="container mx-auto px-3 md:px-10">
         <div className="px-5 pb-16">
-          <p className="font-zentry special-font text-4xl md:text-9xl text-lavender-100">
+          <motion.p
+              initial={{ opacity: 0, y: 30, filter: "blur(5px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              viewport={{ once: false, amount: 0.2}}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+          className="font-zentry special-font text-4xl md:text-9xl text-lavender-100">
             PRO<b>J</b>ECTS
-          </p>
-          <ShinyText
+          </motion.p>
+          <motion.div initial={{ opacity: 0, y: 30, filter: "blur(5px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              viewport={{ once: false, amount: 0.2}}
+              transition={{ duration: 0.8, ease: "easeOut" }}>
+            <ShinyText
               text="A collection of my projects, showcasing my skills and creativity.
             I am constantly working on new projects, so stay tuned for more updates!"
               disabled={false}
               speed={5}
               className="max-w-md text-lg text-lavender-100"
             />
+          </motion.div>
+          
         </div>
 
         <BentoTilt className="border-hsla bento-tilt_1 relative mb-7 h-96 w-full overflow-hidden rounded-md md:h-[65vh]">
           <BentoCard
-            src="images/pizzario.jpg"
+            src="/images/pizzario.jpg"
             title={
               <>
                 PIZZ<b>A</b>RIO
@@ -188,7 +204,7 @@ const Projects = () => {
         <div className="grid w-full grid-cols-2 grid-rows-2 gap-7">
           <BentoTilt className="bento-tilt_1 row-span-1 md:col-span-1 md:ms-0 h-96">
             <BentoCard
-              src="images/newsscraper.jpg"
+              src="/images/newsscraper.jpg"
               title={
                 <>
                   C<b>E</b>YLON BRIEF
@@ -202,7 +218,7 @@ const Projects = () => {
 
           <BentoTilt className="bento-tilt_1  md:col-span-1 md:me-0 h-96">
             <BentoCard
-              src="videos/feature-4.mp4"
+              src="/images/gif1.gif"
               title={
                 <>
                   az<b>u</b>l
@@ -215,7 +231,7 @@ const Projects = () => {
 
           <BentoTilt className="bento-tilt_1 row-span-1  md:col-span-1 md:ms-0 h-96">
             <BentoCard
-              src="videos/feature-3.mp4"
+              src="/images/gif2.gif"
               title={
                 <>
                   n<b>e</b>xus

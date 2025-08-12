@@ -2,13 +2,19 @@ import AnimatedText from "./AnimatedText"
 import { DiMongodb, DiReact } from "react-icons/di"
 import { FaHtml5, FaJava, FaJs, FaNodeJs, FaPython } from "react-icons/fa6"
 import { SiMysql, SiSpringboot, SiTailwindcss, SiTypescript } from "react-icons/si"
+import { motion } from "framer-motion";
 
 
 
 const About = () => {
   return (
     <section className="w-full bg-black mb-8 px-2 lg:px-36  ">
-      <div className="container abcont mx-auto p-2 md:p-4  bg-lavender-100 rounded-xl">
+      <motion.div 
+        initial={{ opacity: 1, scale: 0.95, filter: "blur(5px)" }}
+        whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+        viewport={{ once: false, amount: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+      className="container abcont mx-auto p-2 md:p-4  bg-lavender-100 rounded-xl">
         <p className="font-general text-sm uppercase md:text-[12px] text-center text-zinc-700 mb-6">What I&rsquo;m Working with</p>
         <AnimatedText
           text="MODERN"
@@ -72,7 +78,7 @@ const About = () => {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
     </section>
   )

@@ -8,14 +8,15 @@ import Projects from "@/components/Projects";
 import ShinyText from "@/components/ShinyText";
 import Waves from "@/components/Waves";
 import { Element } from "react-scroll";
-import { motion } from "framer-motion";
 import Image from "next/image";
 import AnimatedIntro from "@/components/AnimatedIntro";
+import { motion } from "framer-motion";
 
 
 const Home = () => {
 
 
+  
 
   return (
     <main className="w-full min-h-dvh bg-black">
@@ -104,12 +105,17 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="container mx-auto w-full md:max-w-5xl my-8 flex flex-col items-center">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center font-outfit text-lavender-100 uppercase">
+        <div  className="container mx-auto w-full md:max-w-5xl my-8 pt-4 flex flex-col items-center">
+          <motion.div 
+            initial={{ opacity: 0, y: 30, filter: "blur(5px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            viewport={{ once: false, amount: 0.2}}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center font-outfit text-lavender-100 uppercase">
             {/* Card 1 */}
             <div className="bg-[#0B0C0E] p-4 sm:p-6 w-full max-w-xs h-auto rounded-2xl shadow-md flex flex-col items-center ">
               <div className="w-full aspect-[6/5] rounded-xl overflow-hidden mb-6">
-                <Image src="/images/gif1.gif" alt="" width={400} height={333} className="w-full h-full object-cover" />
+                <Image unoptimized src="/images/gif1.gif" alt="" width={400} height={333} className="w-full h-full object-cover" />
               </div>
               <LoopText text="Creative" className="text-3xl tracking-widest font-semibold mt-2 text-center"/>
               <LoopText text="Designer" className="text-2xl tracking-widest font-semibold text-center" stagger={3}/>
@@ -117,7 +123,7 @@ const Home = () => {
             {/* Card 2 */}
             <div className="bg-[#0B0C0E] p-4 sm:p-6 w-full max-w-xs h-auto rounded-2xl shadow-md flex flex-col items-center ">
               <div className="w-full aspect-[6/5] rounded-xl overflow-hidden mb-6">
-                <Image src="/images/gif2.gif" alt="" width={400} height={333} className="w-full h-full object-cover" />
+                <Image unoptimized src="/images/gif2.gif" alt="" width={400} height={333} className="w-full h-full object-cover" />
               </div>
               <LoopText text="Analytical" className="text-3xl tracking-widest font-semibold mt-2 text-center"/>
               <LoopText text="Thinker" className="text-2xl tracking-widest font-semibold text-center" stagger={3}/>
@@ -125,12 +131,12 @@ const Home = () => {
             {/* Card 3 */}
             <div className="bg-[#0B0C0E] p-4 sm:p-6 w-full max-w-xs h-auto rounded-2xl shadow-md flex flex-col items-center ">
               <div className="w-full aspect-[6/5] rounded-xl overflow-hidden mb-6">
-                <Image src="/images/gif3.gif" alt="" width={400} height={333} className="w-full h-full object-cover" />
+                <Image unoptimized src="/images/gif3.gif" alt="" width={400} height={333} className="w-full h-full object-cover" />
               </div>
               <LoopText text="Fullstack" className="text-3xl tracking-widest font-semibold mt-2 text-center"/>
               <LoopText text="Developer" className="text-2xl tracking-widest font-semibold text-center" stagger={3}/>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         <div className="container w-full md:max-w-5xl mx-auto mb-8 flex flex-col items-center">
@@ -145,7 +151,8 @@ const Home = () => {
       </section>
 
       <Element name="about">
-        <About />
+        <About 
+        />
       </Element>
 
       <Element name="projects">

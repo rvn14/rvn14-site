@@ -1,6 +1,7 @@
 "use client"
 import  { useState } from 'react'
 import gsap from 'gsap'
+import { motion } from 'framer-motion'
 
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
@@ -51,7 +52,12 @@ const Experience = () => {
 
   return (
    
-    <div className="exp container relative flex bg-[#0B0C0E] w-full min-h-144 rounded-xl overflow-clip select-none">
+    <motion.div
+      initial={{ opacity: 0, y: 30, filter: "blur(5px)" }}
+      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      viewport={{ once: false, amount: 0.2}}
+      transition={{ duration: 0.8, ease: "easeOut" }} 
+    className="exp container relative flex bg-[#0B0C0E] w-full min-h-144 rounded-xl overflow-clip select-none">
       <div className='w-full z-2 absolute'>
 
       <div className='exp flex flex-col justify-center w-full h-full text-lavender-100 '>
@@ -99,7 +105,7 @@ const Experience = () => {
       </div>
       
 
-    </div>
+    </motion.div>
   )
 }
 
