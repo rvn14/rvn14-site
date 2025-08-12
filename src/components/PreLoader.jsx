@@ -206,7 +206,7 @@ export default function PreLoader({
   return (
     <div
       ref={overlayRef}
-      className="fixed inset-0 z-[9999] bg-black text-lavender-400 flex items-center justify-center select-none font-outfit"
+      className="fixed inset-0 z-[9999] bg-black text-lavender-400 flex items-center justify-center select-none font-outfit w-full h-dvh"
       aria-label="Loading"
     >
       <div className="flex flex-col items-center gap-4">
