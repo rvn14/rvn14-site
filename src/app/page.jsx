@@ -11,12 +11,33 @@ import { Element } from "react-scroll";
 import Image from "next/image";
 import AnimatedIntro from "@/components/AnimatedIntro";
 import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
+gsap.registerPlugin(ScrollTrigger);
 
 
 const Home = () => {
 
+const imageRef = useRef(null);
+const imageContRef = useRef(null);
 
-  
+useEffect(() => {
+  const ctx = gsap.context(() => {
+    gsap.to(imageRef.current, {
+      scrollTrigger: {
+        trigger: imageContRef.current,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true,
+        markers: true,
+      },
+      scale: 1.15,
+    });
+  });
+
+  return () => ctx.revert();
+}, []);
 
   return (
     <main className="w-full min-h-dvh bg-black">
@@ -82,14 +103,14 @@ const Home = () => {
             />
 
           </div>
-          <div className="flex flex-col items-center inset-0 z-10 w-full rounded-2xl md:relative">
+          <div ref={imageContRef} className="flex flex-col items-center inset-0 z-10 w-full rounded-2xl md:relative">
             <div className="flex flex-col items-center justify-center rounded-xl overflow-hidden z-10">
               <div className="absolute bottom-0 w-full h-2/3 bg-gradient-to-t from-black via-black to-transparent pointer-events-none z-10"></div>
-              <Image
+              <Image ref={imageRef}
                   src="/images/aboutbg2.jpg"
                   alt=""
-                  width={800}
-                  height={400}
+                  width={3000}
+                  height={1500}
                   className="scale-102 w-full h-auto"
                   priority
                 />
