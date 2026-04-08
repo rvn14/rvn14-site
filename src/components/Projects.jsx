@@ -91,7 +91,7 @@ export const BentoCard = ({ src, title, description, isComingSoon, repoLink, sit
         priority={true}
       />
       <div className="absolute top-0 z-10 flex size-full flex-col justify-between p-5 bg-gradient-to-b from-black/0 to-black/0 text-white transition-opacity duration-300 ">
-        <div className="flex flex-col p-3 bg-black/20 backdrop-blur-xs rounded-lg border-hsla shadow-lg ">
+        <div className="flex flex-col p-3 bg-black/50 backdrop-blur-xs rounded-lg border-hsla shadow-lg ">
           <div className="flex items-center justify-between ">
             <h1 className="bento-title special-font font-light select-none">{title}</h1>
             
