@@ -90,14 +90,14 @@ export const BentoCard = ({ src, title, description, isComingSoon, repoLink, sit
         height={600}
         priority={true}
       />
-      <div className="absolute top-0 z-10 flex size-full flex-col justify-between p-5 bg-gradient-to-b from-black/0 to-black/0 text-lavender-100 transition-opacity duration-300 ">
+      <div className="absolute top-0 z-10 flex size-full flex-col justify-between p-5 bg-gradient-to-b from-black/0 to-black/0 text-white transition-opacity duration-300 ">
         <div className="flex flex-col p-3 bg-black/20 backdrop-blur-xs rounded-lg border-hsla shadow-lg ">
           <div className="flex items-center justify-between ">
             <h1 className="bento-title special-font font-light select-none">{title}</h1>
             
           </div>
           {description && (
-            <p className="mt-3 max-w-64 text-xs md:text-sm  select-none line-clamp-3 text-lavender-100">{description}</p>
+            <p className="mt-3 max-w-64 text-xs md:text-sm  select-none line-clamp-3 text-lavender-50">{description}</p>
           )}
         </div>
         
@@ -218,26 +218,28 @@ const Projects = () => {
 
           <BentoTilt className="bento-tilt_1  md:col-span-1 md:me-0 h-96">
             <BentoCard
-              src="/images/gif1.gif"
+              src="/images/govconn.jpg"
               title={
                 <>
-                  Gov<b>C</b>ONN<b>E</b>CT
+                  Gov<b>C</b>ONN
                 </>
               }
-              description="A cross-world AI Agent - elevating your gameplay to be more fun and productive."
+              description="GovConn is a complete digital ecosystem that unifies government services for citizens, offices, and administrators. Built by Team Vertex, GovConn provides a seamless, secure, and interactive experience via a mobile app, citizen portal, office interface, and AI-powered assistant."
+              repoLink="https://github.com/GovConn/TeamVertex_GovConn"
               
             />
           </BentoTilt>
 
           <BentoTilt className="bento-tilt_1 row-span-1  md:col-span-1 md:ms-0 h-96">
             <BentoCard
-              src="/images/gif2.gif"
+              src="/images/yt.jpg"
               title={
                 <>
-                  n<b>e</b>xus
+                  YT<b>DO</b>WN<b>LOA</b>DER
                 </>
               }
-              description="A gamified social hub, adding a new dimension of play to social interaction for Web3 communities."
+              description="A Windows-friendly YouTube downloader with a desktop UI and optional CLI mode."
+              repoLink="https://github.com/rvn14/ytdownloader"
               
             />
           </BentoTilt>
