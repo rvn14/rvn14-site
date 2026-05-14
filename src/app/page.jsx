@@ -14,6 +14,7 @@ import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
+import Achievements from "@/components/Achievements";
 gsap.registerPlugin(ScrollTrigger);
 
 
@@ -176,6 +177,10 @@ useEffect(() => {
 
         <Element name="projects">
           <Projects />
+        </Element>
+
+        <Element name="Awards">
+          <Achievements />
         </Element>
 
         <Element name="contact">

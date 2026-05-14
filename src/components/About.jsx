@@ -100,10 +100,10 @@ const About = () => {
             <div className="group flex items-center justify-center h-30 md:h-56 border-r border-gray-300 p-4 md:p-16 hover:bg-black hover:text-lavender-100 transition-colors duration-500" aria-label="Typescript" title="Typescript">
               <SiTypescript className="text-8xl text-black group-hover:text-lavender-100 transition-colors duration-500" />
             </div>
-            <div className="group flex items-center justify-center h-30 md:h-56  border-gray-300 p-4 md:p-16 hover:bg-black hover:text-lavender-100 transition-colors duration-500" aria-label="Python" title="Python">
+            <div className="group flex items-center justify-center h-30 md:h-56 p-4 md:p-16 hover:bg-black hover:text-lavender-100 transition-colors duration-500 border-r border-gray-300" aria-label="Python" title="Python">
               <FaPython className="text-8xl text-black group-hover:text-lavender-100 transition-colors duration-500" />
             </div>
-            <div className="group flex items-center justify-center h-30 md:h-56 border-r border-gray-300 hover:bg-black hover:text-lavender-100 transition-colors duration-500" aria-label="Java" title="Java">
+            <div className="group flex items-center justify-center h-30 md:h-56  hover:bg-black hover:text-lavender-100 transition-colors duration-500" aria-label="Java" title="Java">
               <FaJava className="text-8xl text-black group-hover:text-lavender-100 transition-colors duration-500" />
             </div>
           </div>
