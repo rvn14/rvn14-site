@@ -35,7 +35,7 @@ const achievements = [
     description:
       "Won silver at IX25 while exploring the World of AR with Team Vertex, turning shared ideas into a focused prototype and final presentation.",
     icon: FaMedal,
-    image: "/images/ix.jpg",
+    image: "/images/IX.jpg",
   },
 ];
 
