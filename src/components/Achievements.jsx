@@ -129,7 +129,7 @@ const Achievements = () => {
   return (
     <section className="relative w-full bg-black pb-16 pt-8">
       <div className="container mx-auto px-2 md:px-0">
-        <div className="px-20 pb-14">
+        <div className="px-20 pb-14 text-center">
           <motion.p
             initial={{ opacity: 0, y: 30, filter: "blur(5px)" }}
             whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}

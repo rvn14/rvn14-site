@@ -15,6 +15,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import Achievements from "@/components/Achievements";
+import Certify from "@/components/Certify";
 gsap.registerPlugin(ScrollTrigger);
 
 
@@ -181,6 +182,10 @@ useEffect(() => {
 
         <Element name="Awards">
           <Achievements />
+        </Element>
+
+        <Element name="certifications">
+          <Certify />
         </Element>
 
         <Element name="contact">
